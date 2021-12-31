@@ -1,0 +1,42 @@
+{
+  "name": "ms-swiper.js",
+  "version": "1.0.0",
+  "description": "HTML5 ms-swiper WebComponent",
+  "main": "./dist/ms-swiper.js",
+  "types": "./d.ts/ms-swiper.d.ts",
+  "keywords": [
+    "html5",
+    "mobile",
+    "swiper",
+    "web component",
+    "javascript",
+    "typescript"
+  ],
+  "scripts": {
+    "build": "webpack --mode=production --progress",
+    "build:debug": "webpack --mode=development --progress",
+    "dev": "webpack --mode=development --progress --watch",
+    "dtslint": "dtslint types"
+  },
+  "dependencies": {
+    "webworkify-webpack": "^2.1.5"
+  },
+  "devDependencies": {
+    "@types/node": "^16.3.3",
+    "@typescript-eslint/eslint-plugin": "^4.28.3",
+    "@typescript-eslint/parser": "^4.28.3",
+    "css-loader": "^6.5.1",
+    "eslint": "^7.30.0",
+    "exports-loader": "^3.0.0",
+    "mini-css-extract-plugin": "^2.4.5",
+    "source-map-loader": "^3.0.0",
+    "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.1.4",
+    "ts-loader": "^9.2.3",
+    "typescript": "^4.3.5",
+    "webpack": "^5.45.1",
+    "webpack-cli": "^4.7.2"
+  },
+  "author": "meng jiaxi <1040616435@qq.im>",
+  "license": "Apache-2.0"
+}

@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "allowJs": true,
+    "sourceMap": true,
+    "module": "es6",
+    "target": "es6",
+    "experimentalDecorators": true,
+    "declaration": true,
+    "declarationDir": "./d.ts/",
+    "lib": ["dom", "es6", "es2015.promise", "es2015.collection"]
+  },
+  "include": ["./src/**/*", "./src/*"]
+}

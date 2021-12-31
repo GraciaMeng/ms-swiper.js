@@ -1,0 +1,6 @@
+.opacity {
+  opacity: 0;
+}
+.opacity--selected {
+  opacity: 1;
+}
