@@ -1,33 +1,26 @@
-import type { SwiperType } from "./swiperTypes";
+import type { SwiperObjectInterface } from "./swiperTypes";
 export declare type PluginType = ControllerPluginInterface | PreviousPluginInterface | NextPluginInterface;
-export declare type render = (argsObj: Object) => HTMLElement;
-export declare type action = (swiper: any) => void;
-export declare type remove = (swiper: any) => void;
-export interface ControllerPluginInterface {
-    swiper: undefined;
+export interface PluginInterface<T> {
+    render: (argsObj: Object) => HTMLElement;
+    action: T;
+    remove: T;
+}
+export interface SwiperPluginInterface extends PluginInterface<(swiper: SwiperObjectInterface) => void> {
+    swiper: SwiperObjectInterface;
+}
+export interface ControllerPluginInterface extends SwiperPluginInterface {
     controller: undefined;
-    buttons: [];
-    render: render;
-    action: action;
-    remove: remove;
+    buttons: HTMLElement[];
     onMouseOver: (evt: MouseEvent) => void;
     onMouseOut: () => void;
     onClick: (evt: MouseEvent) => void;
     onSwiper: (evt: CustomEvent) => void;
 }
-export interface PreviousPluginInterface {
-    swiper: SwiperType;
+export interface PreviousPluginInterface extends SwiperPluginInterface {
     previous: undefined;
     onClick: (evt: Event) => void;
-    render: render;
-    action: action;
-    remove: remove;
 }
-export interface NextPluginInterface {
-    swiper: SwiperType;
+export interface NextPluginInterface extends SwiperPluginInterface {
     next: undefined;
     onClick: (evt: Event) => void;
-    render: render;
-    action: action;
-    remove: remove;
 }

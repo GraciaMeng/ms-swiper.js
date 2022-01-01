@@ -12,18 +12,18 @@ export declare enum EasingFunctionEnum {
     easeInOutCubic = "easeInOutCubic"
 }
 export interface ConfigInterface {
-    width: string;
-    height: string;
-    images: string[];
-    interval: number;
-    autoplay: boolean;
-    "show-dots": boolean;
-    "switch-dots": boolean;
-    "indicator-dots": boolean;
-    "indicator-color": string;
-    "indicator-active-color": string;
-    trigger: TriggerEnum;
-    vertical: boolean;
-    "easing-function": EasingFunctionEnum;
+    width?: string;
+    height?: string;
+    images?: string[];
+    interval?: number;
+    autoplay?: boolean;
+    "show-dots"?: boolean;
+    "switch-dots"?: boolean;
+    "indicator-dots"?: boolean;
+    "indicator-color"?: string;
+    "indicator-active-color"?: string;
+    trigger?: TriggerEnum;
+    vertical?: boolean;
+    "easing-function"?: EasingFunctionEnum;
     plugins?: PluginType[];
 }

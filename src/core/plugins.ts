@@ -58,11 +58,11 @@ export const controllerPlugin: ControllerPluginInterface = {
     );
     if (controller) {
       this.controller = controller;
-      this.buttons = [
-        ...controller.querySelectorAll(
+      this.buttons = Array.from(
+        controller.querySelectorAll(
           ".ms-swiper-list__control-buttons, .ms-swiper-list__control-buttons--selected"
-        ),
-      ];
+        )
+      );
       if (swiper.trigger === "hover") {
         controller.addEventListener("mouseover", (evt) => {
           this.onMouseOver(evt);

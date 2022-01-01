@@ -1,7 +1,6 @@
 import { WebComponent } from "./component";
-import type { ConfigInterface } from "../types/configTypes";
+import type { ConfigInterface, TriggerEnum, EasingFunctionEnum } from "../types/configTypes";
 import type { SwiperObjectInterface, SwiperArgsType } from "../types/swiperTypes";
-import { TriggerEnum, EasingFunctionEnum } from "../types/configTypes";
 declare class Swiper extends WebComponent<SwiperArgsType> implements SwiperObjectInterface {
     container: HTMLElement;
     width: ConfigInterface["width"];

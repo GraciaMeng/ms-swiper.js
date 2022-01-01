@@ -24,7 +24,7 @@ export interface SwiperArgsType {
   indicatorColor: string;
 }
 
-export interface SwiperObjectInterface {
+export interface SwiperObjectInterface extends ConfigInterface {
   container: HTMLElement;
   width: ConfigInterface["width"];
   height: ConfigInterface["height"];

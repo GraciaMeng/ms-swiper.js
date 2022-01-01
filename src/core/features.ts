@@ -1,10 +1,13 @@
 import { WebComponent } from "./component";
-import type { ConfigInterface } from "../types/configTypes";
+import type {
+  ConfigInterface,
+  TriggerEnum,
+  EasingFunctionEnum,
+} from "../types/configTypes";
 import type {
   SwiperObjectInterface,
   SwiperArgsType,
 } from "../types/swiperTypes";
-import { TriggerEnum, EasingFunctionEnum } from "../types/configTypes";
 
 let globalInnerHTML = null;
 
