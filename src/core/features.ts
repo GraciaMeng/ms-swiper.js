@@ -1,6 +1,9 @@
 import { WebComponent } from "./component";
 import type { ConfigInterface } from "../types/configTypes";
-import type { SwiperObjectInterface } from "../types/swiperTypes";
+import type {
+  SwiperObjectInterface,
+  SwiperArgsType,
+} from "../types/swiperTypes";
 import { TriggerEnum, EasingFunctionEnum } from "../types/configTypes";
 
 let globalInnerHTML = null;
@@ -14,7 +17,10 @@ class MsSwiper extends HTMLElement {
   }
 }
 
-class Swiper extends WebComponent implements SwiperObjectInterface {
+class Swiper
+  extends WebComponent<SwiperArgsType>
+  implements SwiperObjectInterface
+{
   container: HTMLElement;
   width: ConfigInterface["width"];
   height: ConfigInterface["height"];
@@ -76,11 +82,15 @@ class Swiper extends WebComponent implements SwiperObjectInterface {
     this.registerPlugins(
       "ms-swiper",
       (pluginContainer: DocumentFragment) => {
-        if (this.showDots) pluginContainer.children[0].className += "--show";
+        if (this.showDots) {
+          pluginContainer.children[0].classList.add("ms-swiper__plugin--show");
+        }
         this.container.appendChild(pluginContainer);
       },
-      this.images,
-      this.indicatorColor
+      {
+        images: this.images,
+        indicatorColor: this.indicatorColor,
+      }
     );
   }
 

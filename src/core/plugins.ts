@@ -1,3 +1,4 @@
+import { SwiperArgsType } from "../types/swiperTypes";
 import type {
   ControllerPluginInterface,
   PreviousPluginInterface,
@@ -8,8 +9,8 @@ export const controllerPlugin: ControllerPluginInterface = {
   swiper: undefined,
   controller: undefined,
   buttons: [],
-  render(args) {
-    const [images, indicatorColor] = args;
+  render(argsObj: SwiperArgsType) {
+    const { images, indicatorColor } = argsObj;
     const control = document.createElement("div");
     control.className = "ms-swiper-list__control";
     control.innerHTML = `${images

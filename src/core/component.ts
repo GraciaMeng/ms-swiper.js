@@ -2,7 +2,7 @@ import type { PluginType } from "../types/pluginTypes";
 import type { WebComponentInterface } from "../types/swiperTypes";
 
 // 公共 WebComponent 类
-export class WebComponent implements WebComponentInterface {
+export class WebComponent<T> implements WebComponentInterface<T> {
   plugins: PluginType[];
   constructor(plugins) {
     this.plugins = plugins;
@@ -12,10 +12,10 @@ export class WebComponent implements WebComponentInterface {
   }
 
   // 注册所需插件
-  registerPlugins(webCompName: string, callback: Function, ...args): void {
+  registerPlugins(webCompName: string, callback: Function, argsObj: T): void {
     this.plugins.forEach((plugin) => {
       const pluginContainer = document.createDocumentFragment();
-      const pluginComp = plugin.render(args);
+      const pluginComp = plugin.render(argsObj);
 
       pluginComp.classList.add(`${webCompName}__plugin`);
       pluginContainer.appendChild(pluginComp);

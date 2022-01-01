@@ -5,7 +5,7 @@ export type PluginType =
   | PreviousPluginInterface
   | NextPluginInterface;
 
-export type render = (args: any[]) => HTMLElement;
+export type render = (argsObj: Object) => HTMLElement;
 export type action = (swiper) => void;
 export type remove = (swiper) => void;
 

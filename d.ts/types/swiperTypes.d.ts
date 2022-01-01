@@ -5,12 +5,16 @@ export interface MsSwiperjsInterface {
     isSupported?: Function;
     createConfig?: (config: ConfigInterface) => ConfigInterface;
 }
-export interface WebComponentInterface {
+export interface WebComponentInterface<T> {
     render?: (string: any) => void;
-    registerPlugins?: (webCompName: string, callback: Function) => void;
+    registerPlugins?: (webCompName: string, callback: Function, argsObj: T) => void;
     removePlugins?: (plugins: PluginType[]) => void;
 }
 export declare type SwiperType = SwiperObjectInterface | undefined;
+export interface SwiperArgsType {
+    images: ConfigInterface["images"];
+    indicatorColor: string;
+}
 export interface SwiperObjectInterface {
     container: HTMLElement;
     width: ConfigInterface["width"];
