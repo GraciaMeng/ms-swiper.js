@@ -1,4 +1,3 @@
-import type { PluginType } from "../types/pluginTypes";
 import type { WebComponentInterface } from "../types/swiperTypes";
 
 // 公共 WebComponent 类

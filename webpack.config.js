@@ -8,7 +8,7 @@ let config = {
     target: "web",
     entry: {
         'ms-swiper': "./src/index.ts",
-        css: './src/css.ts',
+        "ms-swiper-styles": './src/css.ts',
     },
     output: {
         filename: '[name].js',
