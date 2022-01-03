@@ -20,12 +20,12 @@ export enum EasingFunctionEnum {
 }
 
 export interface ConfigInterface {
+  // 轮播图图片
+  images: string[];
   // 宽
   width?: string;
   // 高
   height?: string;
-  // 轮播图图片
-  images?: string[];
   // 间隔时间
   interval?: number;
   // 是否自动播放

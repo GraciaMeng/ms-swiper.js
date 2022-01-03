@@ -6,6 +6,7 @@ import type { ConfigInterface } from "./types/configTypes";
 
 // factory method
 function createSwiper(config: ConfigInterface) {
+  if (!config.images || config.images.length === 0) return;
   // if (typeof defaultConfig === "undefined") {
   //   throw TypeError("argument may only be an Object");
   // }

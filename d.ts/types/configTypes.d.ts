@@ -12,9 +12,9 @@ export declare enum EasingFunctionEnum {
     easeInOutCubic = "easeInOutCubic"
 }
 export interface ConfigInterface {
+    images: string[];
     width?: string;
     height?: string;
-    images?: string[];
     interval?: number;
     autoplay?: boolean;
     "show-dots"?: boolean;

@@ -8,7 +8,6 @@
       body {
         margin: 0;
         padding: 0;
-        text-align: center;
       }
       /* .img {
         background-image: url("https://p5.ssl.qhimg.com/t0119c74624763dd070.png");
@@ -29,10 +28,27 @@
 
   <body>
     <ms-swiper id="ms-swiper"></ms-swiper>
+    <div>11</div>
     <script src="../dist/ms-swiper.js"></script>
 
     <script>
-      msSwiperjs.createSwiper();
+      msSwiperjs.createSwiper({
+        height: "340px",
+        width: "790px",
+        images: [
+          "https://p5.ssl.qhimg.com/t0119c74624763dd070.png",
+          "https://p4.ssl.qhimg.com/t01adbe3351db853eb3.jpg",
+          "https://p2.ssl.qhimg.com/t01645cd5ba0c3b60cb.jpg",
+          "https://p4.ssl.qhimg.com/t01331ac159b58f5478.jpg",
+        ],
+        trigger: "hover",
+        autoplay: true,
+        "show-dots": false,
+        "switch-dots": true,
+        "indicator-dots": false,
+        "indicator-color": "#fff",
+        "indicator-active-color": "red",
+      });
     </script>
   </body>
 </html>

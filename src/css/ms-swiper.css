@@ -1,9 +1,9 @@
 #ms-swiper,
+.ms-swiper,
 ms-swiper {
   position: relative;
-  display: inline-block;
-  width: 790px;
-  height: 340px;
+  display: block;
+  font-size: 16px;
 }
 
 .ms-swiper-list {
@@ -63,8 +63,10 @@ ms-swiper {
 }
 
 .ms-swiper-list__control {
-  position: relative;
-  bottom: 35px;
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  transform: translate(-50%);
   display: table;
   padding: 5px;
   margin: auto;

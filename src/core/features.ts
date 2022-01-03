@@ -11,6 +11,9 @@ import type {
 } from "../types/swiperTypes";
 
 class MsSwiper extends HTMLElement {
+  static get observedAttributes() {
+    return ["width", "height"];
+  }
   constructor() {
     super();
   }
@@ -74,6 +77,8 @@ class Swiper
 
   // 注册ms-swiper元素
   registerSwiperElement(): void {
+    this.container.style.width = this.width;
+    this.container.style.height = this.height;
     this.registerPlugins(
       "ms-swiper",
       (pluginContainer: DocumentFragment) => {

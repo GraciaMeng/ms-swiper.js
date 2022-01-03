@@ -1,7 +1,14 @@
+export const typeValidate = (validationObj): string => {
+  return Object.prototype.toString
+    .call(validationObj)
+    .slice(8, -1)
+    .toLowerCase();
+};
+
 export const createVDom = (
   tag: string,
   props?,
-  children?: HTMLElement[] | HTMLElement | string | undefined
+  children?: HTMLElement[] | string | undefined
 ): HTMLElement => {
   const element = document.createElement(tag);
   for (const propKey in props) {
