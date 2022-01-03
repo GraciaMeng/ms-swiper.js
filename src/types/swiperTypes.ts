@@ -8,7 +8,7 @@ export interface MsSwiperjsInterface {
 }
 
 export interface WebComponentInterface<T> {
-  render?: (string) => void;
+  render?: () => HTMLElement;
   registerPlugins?: (
     webCompName: string,
     callback: Function,
@@ -45,7 +45,7 @@ export interface SwiperObjectInterface extends ConfigInterface {
   _timer: number | null;
 
   registerSwiperElement: () => void;
-  render: (string) => void;
+  render: () => HTMLElement;
   slideTo: (idx: number) => void;
   getSelectedItem: () => HTMLElement;
   getSelectedItemIndex: () => number;

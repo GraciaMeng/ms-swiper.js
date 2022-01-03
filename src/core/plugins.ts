@@ -1,4 +1,5 @@
-import { SwiperArgsType } from "../types/swiperTypes";
+import { createVDom } from "../utils/dom";
+import type { SwiperArgsType } from "../types/swiperTypes";
 import type {
   ControllerPluginInterface,
   PreviousPluginInterface,
@@ -11,17 +12,21 @@ export const controllerPlugin: ControllerPluginInterface = {
   buttons: [],
   render(argsObj: SwiperArgsType) {
     const { images, indicatorColor } = argsObj;
-    const control = document.createElement("div");
-    control.className = "ms-swiper-list__control";
-    control.innerHTML = `${images
-      .map(
-        (_, index) =>
-          `<span class="ms-swiper-list__control-buttons${
-            index === 0 ? "--selected" : ""
-          }" style="background-color:${indicatorColor}"></span>`
-      )
-      .join("")}`.trim();
-    return control;
+    const controllerDotNodeList = images.map((_, index) => {
+      const spanNode = createVDom("span", {
+        class: `ms-swiper-list__control-buttons${
+          index === 0 ? "--selected" : ""
+        }`,
+        style: `background-color:${indicatorColor}`,
+      });
+      return spanNode;
+    });
+    const controlNode = createVDom(
+      "div",
+      { class: "ms-swiper-list__control" },
+      controllerDotNodeList
+    );
+    return controlNode;
   },
   onMouseOver(evt) {
     const idx = this.buttons.indexOf(evt.target);
@@ -105,9 +110,10 @@ export const previousPlugin: PreviousPluginInterface = {
   swiper: undefined,
   previous: undefined,
   render() {
-    const previous = document.createElement("span");
-    previous.className = "ms-swiper-list__previous";
-    return previous;
+    const previousNode = createVDom("span", {
+      class: "ms-swiper-list__previous",
+    });
+    return previousNode;
   },
   onClick(evt) {
     evt.preventDefault();
@@ -134,9 +140,10 @@ export const nextPlugin: NextPluginInterface = {
   swiper: undefined,
   next: undefined,
   render() {
-    const next = document.createElement("span");
-    next.className = "ms-swiper-list__next";
-    return next;
+    const nextNode = createVDom("span", {
+      class: "ms-swiper-list__next",
+    });
+    return nextNode;
   },
   onClick(evt) {
     evt.preventDefault();

@@ -21,7 +21,7 @@ declare class Swiper extends WebComponent<SwiperArgsType> implements SwiperObjec
     _timer: number | null;
     constructor(options: ConfigInterface);
     registerSwiperElement(): void;
-    render(): string;
+    render(): HTMLElement;
     slideTo(idx: number): void;
     getSelectedItem(): HTMLElement;
     getSelectedItemIndex(): number;

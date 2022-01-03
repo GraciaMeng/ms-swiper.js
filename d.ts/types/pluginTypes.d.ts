@@ -1,7 +1,7 @@
 import type { SwiperObjectInterface } from "./swiperTypes";
 export declare type PluginType = ControllerPluginInterface | PreviousPluginInterface | NextPluginInterface;
 export interface PluginInterface<T> {
-    render: (argsObj: Object) => HTMLElement;
+    render: (argsObj?: Object) => HTMLElement;
     action: T;
     remove: T;
 }

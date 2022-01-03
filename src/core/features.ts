@@ -1,4 +1,5 @@
 import { WebComponent } from "./component";
+import { createVDom } from "../utils/dom";
 import type {
   ConfigInterface,
   TriggerEnum,
@@ -9,14 +10,9 @@ import type {
   SwiperArgsType,
 } from "../types/swiperTypes";
 
-let globalInnerHTML = null;
-
 class MsSwiper extends HTMLElement {
   constructor() {
     super();
-  }
-  connectedCallback() {
-    this.append(globalInnerHTML);
   }
 }
 
@@ -45,7 +41,8 @@ class Swiper
 
   constructor(options: ConfigInterface) {
     super(options.plugins);
-    this.container = document.createElement("div");
+    this.container = document.querySelector("#ms-swiper");
+    this.container.innerText = "";
     this.width = options.width;
     this.height = options.height;
     this.images = options.images;
@@ -60,7 +57,8 @@ class Swiper
     this.vertical = options.vertical;
     this.trigger = options.trigger;
 
-    this.container.innerHTML = this.render();
+    this.container.appendChild(this.render());
+
     this.items = Array.from(
       this.container.querySelectorAll(
         ".ms-swiper-list__item, .ms-swiper-list__item--selected"
@@ -76,12 +74,6 @@ class Swiper
 
   // 注册ms-swiper元素
   registerSwiperElement(): void {
-    this.container.id = "ms-swiper";
-    this.container.style.height = this.height;
-    this.container.style.width = this.width;
-
-    globalInnerHTML = this.container;
-    customElements.define("ms-swiper", MsSwiper);
     this.registerPlugins(
       "ms-swiper",
       (pluginContainer: DocumentFragment) => {
@@ -95,19 +87,23 @@ class Swiper
         indicatorColor: this.indicatorColor,
       }
     );
+    customElements.define("ms-swiper", MsSwiper);
   }
 
   // 渲染滚动图数据
-  render(): string {
+  render(): HTMLElement {
     const images = this.images;
-    const content = images.map((img) =>
-      `
-      <li class="ms-swiper-list__item ${this.easingFunction}">
-        <img class="ms-swiper__img" src="${img}"/>
-      </li>
-      `.trim()
-    );
-    return `<ul class="ms-swiper-list">${content.join("")}</ul>`;
+    const renderContent = images.map((img) => {
+      const imgNode = createVDom("img", { class: "ms-swiper__img", src: img });
+      const liNode = createVDom(
+        "li",
+        { class: `ms-swiper-list__item ${this.easingFunction}` },
+        [imgNode]
+      );
+      return liNode;
+    });
+    const ulNode = createVDom("ul", { class: "ms-swiper-list" }, renderContent);
+    return ulNode;
   }
 
   // 滚动

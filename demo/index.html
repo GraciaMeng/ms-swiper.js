@@ -8,16 +8,31 @@
       body {
         margin: 0;
         padding: 0;
+        text-align: center;
       }
+      /* .img {
+        background-image: url("https://p5.ssl.qhimg.com/t0119c74624763dd070.png");
+        width: 700px;
+        height: 300px;
+        animation: slider 2s infinite linear;
+      }
+      @keyframes slider {
+        0% {
+          background-position: 0%;
+        }
+        100% {
+          background-position: 100%;
+        }
+      } */
     </style>
   </head>
 
   <body>
-    <ms-swiper></ms-swiper>
+    <ms-swiper id="ms-swiper"></ms-swiper>
     <script src="../dist/ms-swiper.js"></script>
 
     <script>
-      new msSwiperjs.createSwiper();
+      msSwiperjs.createSwiper();
     </script>
   </body>
 </html>

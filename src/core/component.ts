@@ -6,8 +6,8 @@ export class WebComponent<T> implements WebComponentInterface<T> {
   constructor(plugins) {
     this.plugins = plugins;
   }
-  render(): string {
-    return "";
+  render(): HTMLElement {
+    return document.createElement("div");
   }
 
   // 注册所需插件

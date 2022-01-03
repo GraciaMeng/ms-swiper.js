@@ -6,7 +6,7 @@ export type PluginType =
   | NextPluginInterface;
 
 export interface PluginInterface<T> {
-  render: (argsObj: Object) => HTMLElement;
+  render: (argsObj?: Object) => HTMLElement;
   action: T;
   remove: T;
 }
