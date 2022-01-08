@@ -1,6 +1,6 @@
-.opacity {
+.fade {
   opacity: 0;
 }
-.opacity--selected {
+.fade--selected {
   opacity: 1;
 }
