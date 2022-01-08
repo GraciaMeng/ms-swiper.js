@@ -17,7 +17,7 @@ export interface SwiperPluginInterface
 }
 
 export interface ControllerPluginInterface extends SwiperPluginInterface {
-  controller: undefined;
+  controller: HTMLElement;
   buttons: HTMLElement[];
   onMouseOver: (evt: MouseEvent) => void;
   onMouseOut: () => void;
@@ -26,11 +26,11 @@ export interface ControllerPluginInterface extends SwiperPluginInterface {
 }
 
 export interface PreviousPluginInterface extends SwiperPluginInterface {
-  previous: undefined;
+  previous: HTMLElement;
   onClick: (evt: Event) => void;
 }
 
 export interface NextPluginInterface extends SwiperPluginInterface {
-  next: undefined;
+  next: HTMLElement;
   onClick: (evt: Event) => void;
 }

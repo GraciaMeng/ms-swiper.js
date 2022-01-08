@@ -20,6 +20,8 @@ export enum EasingFunctionEnum {
 }
 
 export interface ConfigInterface {
+  id?: string;
+  class?: string;
   // 轮播图图片
   images: string[];
   // 宽

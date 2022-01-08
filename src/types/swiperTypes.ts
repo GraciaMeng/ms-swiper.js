@@ -2,6 +2,7 @@ import type { ConfigInterface } from "./configTypes";
 import type { PluginType } from "./pluginTypes";
 
 export interface MsSwiperjsInterface {
+  beforeMounted?: Function;
   createSwiper?: Function;
   isSupported?: Function;
   createConfig?: (config: ConfigInterface) => ConfigInterface;
@@ -26,15 +27,11 @@ export interface SwiperArgsType {
 
 export interface SwiperObjectInterface extends ConfigInterface {
   container: HTMLElement;
-  width: ConfigInterface["width"];
-  height: ConfigInterface["height"];
   images: ConfigInterface["images"];
   interval: ConfigInterface["interval"];
   easingFunction: ConfigInterface["easing-function"];
   autoplay: boolean;
   showDots: boolean;
-  switchDots: boolean;
-  indicatorDots: boolean;
   indicatorColor: string;
   indicatorActiveColor: string;
   vertical: boolean;
