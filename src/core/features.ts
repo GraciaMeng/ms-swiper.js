@@ -10,29 +10,16 @@ import type {
   SwiperArgsType,
 } from "../types/swiperTypes";
 
-class MsSwiper extends HTMLElement {
-  static get observedAttributes() {
-    return ["width", "height"];
-  }
-  constructor() {
-    super();
-  }
-}
-
 class Swiper
   extends WebComponent<SwiperArgsType>
   implements SwiperObjectInterface
 {
   container: HTMLElement;
-  width: ConfigInterface["width"];
-  height: ConfigInterface["height"];
   images: ConfigInterface["images"];
   interval: ConfigInterface["interval"];
   easingFunction: EasingFunctionEnum;
   autoplay: boolean;
   showDots: boolean;
-  switchDots: boolean;
-  indicatorDots: boolean;
   indicatorColor: string;
   indicatorActiveColor: string;
   vertical: boolean;
@@ -42,23 +29,19 @@ class Swiper
   length: number;
   _timer: number | null;
 
-  constructor(options: ConfigInterface) {
-    super(options.plugins);
-    this.container = document.querySelector("#ms-swiper");
+  constructor(container, plugins) {
+    super(plugins);
+    this.container = container;
     this.container.innerText = "";
-    this.width = options.width;
-    this.height = options.height;
-    this.images = options.images;
-    this.interval = options.interval;
-    this.easingFunction = options["easing-function"];
-    this.autoplay = options.autoplay;
-    this.showDots = options["show-dots"];
-    this.switchDots = options["switch-dots"];
-    this.indicatorDots = options["indicator-dots"];
-    this.indicatorColor = options["indicator-color"];
-    this.indicatorActiveColor = options["indicator-active-color"];
-    this.vertical = options.vertical;
-    this.trigger = options.trigger;
+    this.images = container.images;
+    this.interval = container.interval;
+    this.easingFunction = container.easingFunction;
+    this.autoplay = container.autoplay;
+    this.showDots = container.showDots;
+    this.indicatorColor = container.indicatorColor;
+    this.indicatorActiveColor = container.indicatorActiveColor;
+    this.vertical = container.vertical;
+    this.trigger = container.trigger;
 
     this.container.appendChild(this.render());
 
@@ -71,14 +54,12 @@ class Swiper
     this.registerSwiperElement();
     if (this.length > 0) {
       this.slideTo(0);
-      if (options.autoplay) this.start();
+      if (container.autoplay) this.start();
     }
   }
 
   // 注册ms-swiper元素
   registerSwiperElement(): void {
-    this.container.style.width = this.width;
-    this.container.style.height = this.height;
     this.registerPlugins(
       "ms-swiper",
       (pluginContainer: DocumentFragment) => {
@@ -92,7 +73,6 @@ class Swiper
         indicatorColor: this.indicatorColor,
       }
     );
-    customElements.define("ms-swiper", MsSwiper);
   }
 
   // 渲染滚动图数据

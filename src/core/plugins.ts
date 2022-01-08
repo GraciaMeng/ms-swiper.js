@@ -1,15 +1,21 @@
+import { previousPluginInterface } from "./../../d.ts/src/types/pluginType.d";
 import { createVDom } from "../utils/dom";
-import type { SwiperArgsType } from "../types/swiperTypes";
+import type {
+  SwiperObjectInterface,
+  SwiperArgsType,
+} from "../types/swiperTypes";
 import type {
   ControllerPluginInterface,
   PreviousPluginInterface,
   NextPluginInterface,
 } from "../types/pluginTypes";
 
-export const controllerPlugin: ControllerPluginInterface = {
-  swiper: undefined,
-  controller: undefined,
-  buttons: [],
+// ControllerPluginInterface = {
+
+export class controllerPlugin implements ControllerPluginInterface {
+  swiper: SwiperObjectInterface;
+  controller: HTMLElement;
+  buttons: HTMLElement[];
   render(argsObj: SwiperArgsType) {
     const { images, indicatorColor } = argsObj;
     const controllerDotNodeList = images.map((_, index) => {
@@ -27,23 +33,23 @@ export const controllerPlugin: ControllerPluginInterface = {
       controllerDotNodeList
     );
     return controlNode;
-  },
-  onMouseOver(evt) {
-    const idx = this.buttons.indexOf(evt.target);
+  }
+  onMouseOver(evt: Event) {
+    const idx = this.buttons.indexOf(evt.target as HTMLElement);
     if (idx < 0) return;
     this.swiper.stop();
     this.swiper.slideTo(idx);
-  },
+  }
   onMouseOut() {
     this.swiper.start();
-  },
+  }
   onClick(evt) {
     const idx = this.buttons.indexOf(evt.target);
     if (idx < 0) return;
     this.swiper.stop();
     this.swiper.slideTo(idx);
     this.swiper.start();
-  },
+  }
   onSwiper(evt) {
     const idx = evt.detail.index;
     const selected = this.controller.querySelector(
@@ -51,11 +57,12 @@ export const controllerPlugin: ControllerPluginInterface = {
     );
     if (selected) {
       selected.className = "ms-swiper-list__control-buttons";
-      selected.style.backgroundColor = this.swiper.indicatorColor;
+      (selected as HTMLElement).style.backgroundColor =
+        this.swiper.indicatorColor;
     }
     this.buttons[idx].className = "ms-swiper-list__control-buttons--selected";
     this.buttons[idx].style.backgroundColor = this.swiper.indicatorActiveColor;
-  },
+  }
   action(swiper) {
     this.swiper = swiper;
     const controller = swiper.container.querySelector(
@@ -86,41 +93,41 @@ export const controllerPlugin: ControllerPluginInterface = {
         this.onSwiper(evt);
       });
     }
-  },
+  }
   remove(swiper) {
     if (swiper.trigger === "hover") {
-      this.controller.removeEventListener("mouseout", () => {
-        this.onMouseOver();
+      this.controller.removeEventListener("mouseout", (event) => {
+        this.onMouseOver(event);
       });
       this.controller.removeEventListener("mouseout", () => {
         this.onMouseOut();
       });
     } else if (swiper.trigger === "click") {
-      this.controller.removeEventListener("click", () => {
-        this.onClick();
+      this.controller.removeEventListener("click", (event) => {
+        this.onClick(event);
       });
     }
     swiper.container.removeEventListener("swiper", (evt) => {
       this.onSwiper(evt);
     });
-  },
-};
+  }
+}
 
-export const previousPlugin: PreviousPluginInterface = {
-  swiper: undefined,
-  previous: undefined,
+export class previousPlugin implements PreviousPluginInterface {
+  swiper: SwiperObjectInterface;
+  previous: HTMLElement;
   render() {
     const previousNode = createVDom("span", {
       class: "ms-swiper-list__previous",
     });
     return previousNode;
-  },
+  }
   onClick(evt) {
     evt.preventDefault();
     this.swiper.stop();
     this.swiper.slidePrevious();
     this.swiper.start();
-  },
+  }
   action(swiper) {
     this.previous = swiper.container.querySelector(".ms-swiper-list__previous");
     if (!this.previous) return;
@@ -128,29 +135,29 @@ export const previousPlugin: PreviousPluginInterface = {
     this.previous.addEventListener("click", (evt) => {
       this.onClick(evt);
     });
-  },
+  }
   remove() {
     this.previous.removeEventListener("click", (evt) => {
       this.onClick(evt);
     });
-  },
-};
+  }
+}
 
-export const nextPlugin: NextPluginInterface = {
-  swiper: undefined,
-  next: undefined,
+export class nextPlugin implements NextPluginInterface {
+  swiper: SwiperObjectInterface;
+  next: HTMLElement;
   render() {
     const nextNode = createVDom("span", {
       class: "ms-swiper-list__next",
     });
     return nextNode;
-  },
+  }
   onClick(evt) {
     evt.preventDefault();
     this.swiper.stop();
     this.swiper.slideNext();
     this.swiper.start();
-  },
+  }
   action(swiper) {
     this.next = swiper.container.querySelector(".ms-swiper-list__next");
     if (!this.next) return;
@@ -158,10 +165,10 @@ export const nextPlugin: NextPluginInterface = {
     this.next.addEventListener("click", (evt) => {
       this.onClick(evt);
     });
-  },
+  }
   remove() {
     this.next.removeEventListener("click", (evt) => {
       this.onClick(evt);
     });
-  },
-};
+  }
+}

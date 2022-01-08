@@ -12,7 +12,8 @@ export class WebComponent<T> implements WebComponentInterface<T> {
 
   // 注册所需插件
   registerPlugins(webCompName: string, callback: Function, argsObj?: T): void {
-    this.plugins.forEach((plugin) => {
+    this.plugins.forEach((pluginClass) => {
+      const plugin = new pluginClass();
       const pluginContainer = document.createDocumentFragment();
       const pluginComp = plugin.render(argsObj);
 

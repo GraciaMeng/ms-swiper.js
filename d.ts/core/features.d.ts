@@ -3,15 +3,11 @@ import type { ConfigInterface, TriggerEnum, EasingFunctionEnum } from "../types/
 import type { SwiperObjectInterface, SwiperArgsType } from "../types/swiperTypes";
 declare class Swiper extends WebComponent<SwiperArgsType> implements SwiperObjectInterface {
     container: HTMLElement;
-    width: ConfigInterface["width"];
-    height: ConfigInterface["height"];
     images: ConfigInterface["images"];
     interval: ConfigInterface["interval"];
     easingFunction: EasingFunctionEnum;
     autoplay: boolean;
     showDots: boolean;
-    switchDots: boolean;
-    indicatorDots: boolean;
     indicatorColor: string;
     indicatorActiveColor: string;
     vertical: boolean;
@@ -19,7 +15,7 @@ declare class Swiper extends WebComponent<SwiperArgsType> implements SwiperObjec
     items: Element[];
     length: number;
     _timer: number | null;
-    constructor(options: ConfigInterface);
+    constructor(container: any, plugins: any);
     registerSwiperElement(): void;
     render(): HTMLElement;
     slideTo(idx: number): void;

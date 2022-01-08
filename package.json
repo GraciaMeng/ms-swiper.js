@@ -1,6 +1,6 @@
 {
   "name": "ms-swiper.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "HTML5 ms-swiper WebComponent",
   "main": "./dist/ms-swiper.js",
   "types": "./d.ts/ms-swiper.d.ts",

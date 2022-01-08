@@ -12,6 +12,8 @@ export declare enum EasingFunctionEnum {
     easeInOutCubic = "easeInOutCubic"
 }
 export interface ConfigInterface {
+    id?: string;
+    class?: string;
     images: string[];
     width?: string;
     height?: string;
