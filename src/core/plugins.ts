@@ -1,4 +1,3 @@
-import { previousPluginInterface } from "./../../d.ts/src/types/pluginType.d";
 import { createVDom } from "../utils/dom";
 import type {
   SwiperObjectInterface,
@@ -9,8 +8,6 @@ import type {
   PreviousPluginInterface,
   NextPluginInterface,
 } from "../types/pluginTypes";
-
-// ControllerPluginInterface = {
 
 export class controllerPlugin implements ControllerPluginInterface {
   swiper: SwiperObjectInterface;
@@ -37,20 +34,17 @@ export class controllerPlugin implements ControllerPluginInterface {
   onMouseOver(evt: Event) {
     const idx = this.buttons.indexOf(evt.target as HTMLElement);
     if (idx < 0) return;
-    this.swiper.stop();
-    this.swiper.slideTo(idx);
+    this.swiper.EventCore.onMouseOverEvent(idx);
   }
   onMouseOut() {
-    this.swiper.start();
+    this.swiper.EventCore.onMouseOutEvent();
   }
-  onClick(evt) {
-    const idx = this.buttons.indexOf(evt.target);
+  onClick(evt: Event) {
+    const idx = this.buttons.indexOf(evt.target as HTMLElement);
     if (idx < 0) return;
-    this.swiper.stop();
-    this.swiper.slideTo(idx);
-    this.swiper.start();
+    this.swiper.EventCore.onClickEvent("", idx);
   }
-  onSwiper(evt) {
+  onSwiper(evt: CustomEvent) {
     const idx = evt.detail.index;
     const selected = this.controller.querySelector(
       ".ms-swiper-list__control-buttons--selected"
@@ -124,9 +118,7 @@ export class previousPlugin implements PreviousPluginInterface {
   }
   onClick(evt) {
     evt.preventDefault();
-    this.swiper.stop();
-    this.swiper.slidePrevious();
-    this.swiper.start();
+    this.swiper.EventCore.onClickEvent("prev");
   }
   action(swiper) {
     this.previous = swiper.container.querySelector(".ms-swiper-list__previous");
@@ -154,9 +146,7 @@ export class nextPlugin implements NextPluginInterface {
   }
   onClick(evt) {
     evt.preventDefault();
-    this.swiper.stop();
-    this.swiper.slideNext();
-    this.swiper.start();
+    this.swiper.EventCore.onClickEvent("next");
   }
   action(swiper) {
     this.next = swiper.container.querySelector(".ms-swiper-list__next");

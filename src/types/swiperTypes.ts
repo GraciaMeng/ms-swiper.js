@@ -1,5 +1,11 @@
+import { SelectType } from "./../utils/common";
 import type { ConfigInterface } from "./configTypes";
 import type { PluginType } from "./pluginTypes";
+import type {
+  SlideCoreType,
+  AutoCoreType,
+  EventCoreType,
+} from "./composeTypes";
 
 export interface MsSwiperjsInterface {
   beforeMounted?: Function;
@@ -39,15 +45,13 @@ export interface SwiperObjectInterface extends ConfigInterface {
   items: Element[];
   length: number;
 
-  _timer: number | null;
+  SelectCore: SelectType;
+  SlideCore: SlideCoreType;
+  AutoCore: AutoCoreType;
+  EventCore: EventCoreType;
 
   registerSwiperElement: () => void;
   render: () => HTMLElement;
-  slideTo: (idx: number) => void;
   getSelectedItem: () => HTMLElement;
   getSelectedItemIndex: () => number;
-  slidePrevious: () => void;
-  slideNext: () => void;
-  start: () => void;
-  stop: () => void;
 }

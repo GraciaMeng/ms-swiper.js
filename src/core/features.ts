@@ -1,4 +1,6 @@
 import { WebComponent } from "./component";
+import { SlideCore, AutoCore, EventCore } from "./compose-core";
+import { Select, SelectType } from "../utils/common";
 import { createVDom } from "../utils/dom";
 import type {
   ConfigInterface,
@@ -9,6 +11,11 @@ import type {
   SwiperObjectInterface,
   SwiperArgsType,
 } from "../types/swiperTypes";
+import type {
+  SlideCoreType,
+  AutoCoreType,
+  EventCoreType,
+} from "../types/composeTypes";
 
 class Swiper
   extends WebComponent<SwiperArgsType>
@@ -27,7 +34,11 @@ class Swiper
 
   items: Element[];
   length: number;
-  _timer: number | null;
+
+  SelectCore: SelectType;
+  SlideCore: SlideCoreType;
+  AutoCore: AutoCoreType;
+  EventCore: EventCoreType;
 
   constructor(container, plugins) {
     super(plugins);
@@ -43,6 +54,11 @@ class Swiper
     this.vertical = container.vertical;
     this.trigger = container.trigger;
 
+    this.SelectCore = new Select("ms-swiper", this);
+    this.SlideCore = new SlideCore(this);
+    this.AutoCore = new AutoCore(this);
+    this.EventCore = new EventCore(this);
+
     this.container.appendChild(this.render());
 
     this.items = Array.from(
@@ -53,8 +69,8 @@ class Swiper
     this.length = this.items.length;
     this.registerSwiperElement();
     if (this.length > 0) {
-      this.slideTo(0);
-      if (container.autoplay) this.start();
+      this.SlideCore.slideTo(0);
+      if (container.autoplay) this.AutoCore.start();
     }
   }
 
@@ -91,59 +107,14 @@ class Swiper
     return ulNode;
   }
 
-  // 滚动
-  slideTo(idx: number): void {
-    const selected = this.getSelectedItem();
-    if (selected) {
-      selected.className = `ms-swiper-list__item ${this.easingFunction}`;
-    }
-    this.items[
-      idx
-    ].className = `ms-swiper-list__item--selected ${this.easingFunction}--selected`;
-
-    const detail = {
-      index: idx,
-    };
-    const event = new CustomEvent("swiper", {
-      bubbles: true,
-      detail,
-    });
-    this.container.dispatchEvent(event);
-  }
-
   // 获取当前的item
   getSelectedItem(): HTMLElement {
-    return this.container.querySelector(".ms-swiper-list__item--selected");
+    return this.SelectCore.getSelectedItem();
   }
 
   // 获取当前item的索引
   getSelectedItemIndex(): number {
-    return this.items.indexOf(this.getSelectedItem());
-  }
-
-  // 点击上一个
-  slidePrevious(): void {
-    const currentIdx = this.getSelectedItemIndex();
-    const previousIdx = (this.length + currentIdx - 1) % this.length;
-    this.slideTo(previousIdx);
-  }
-
-  // 点击下一个
-  slideNext(): void {
-    const currentIdx = this.getSelectedItemIndex();
-    const nextIdx = (currentIdx + 1) % this.length;
-    this.slideTo(nextIdx);
-  }
-
-  // 开始自动滚动
-  start(): void {
-    this.stop();
-    this._timer = window.setInterval(() => this.slideNext(), this.interval);
-  }
-
-  // 停止自动滚动
-  stop(): void {
-    clearInterval(this._timer);
+    return this.SelectCore.getSelectedItemIndex();
   }
 }
 

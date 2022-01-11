@@ -1,6 +1,8 @@
 import { WebComponent } from "./component";
+import { SelectType } from "../utils/common";
 import type { ConfigInterface, TriggerEnum, EasingFunctionEnum } from "../types/configTypes";
 import type { SwiperObjectInterface, SwiperArgsType } from "../types/swiperTypes";
+import type { SlideCoreType, AutoCoreType, EventCoreType } from "../types/composeTypes";
 declare class Swiper extends WebComponent<SwiperArgsType> implements SwiperObjectInterface {
     container: HTMLElement;
     images: ConfigInterface["images"];
@@ -14,16 +16,14 @@ declare class Swiper extends WebComponent<SwiperArgsType> implements SwiperObjec
     trigger: TriggerEnum;
     items: Element[];
     length: number;
-    _timer: number | null;
+    SelectCore: SelectType;
+    SlideCore: SlideCoreType;
+    AutoCore: AutoCoreType;
+    EventCore: EventCoreType;
     constructor(container: any, plugins: any);
     registerSwiperElement(): void;
     render(): HTMLElement;
-    slideTo(idx: number): void;
     getSelectedItem(): HTMLElement;
     getSelectedItemIndex(): number;
-    slidePrevious(): void;
-    slideNext(): void;
-    start(): void;
-    stop(): void;
 }
 export default Swiper;

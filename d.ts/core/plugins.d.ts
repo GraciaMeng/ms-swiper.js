@@ -7,8 +7,8 @@ export declare class controllerPlugin implements ControllerPluginInterface {
     render(argsObj: SwiperArgsType): HTMLElement;
     onMouseOver(evt: Event): void;
     onMouseOut(): void;
-    onClick(evt: any): void;
-    onSwiper(evt: any): void;
+    onClick(evt: Event): void;
+    onSwiper(evt: CustomEvent): void;
     action(swiper: any): void;
     remove(swiper: any): void;
 }
