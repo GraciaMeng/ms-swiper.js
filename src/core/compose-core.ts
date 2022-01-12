@@ -14,11 +14,18 @@ export class SlideCore implements SlideCoreType {
   slideTo(idx: number): void {
     const selected = this.swiperContainer.getSelectedItem();
     if (selected) {
-      selected.className = `ms-swiper-list__item ${this.swiperContainer.easingFunction}`;
+      selected.classList.remove("ms-swiper--activated");
     }
-    this.swiperContainer.items[
-      idx
-    ].className = `ms-swiper-list__item--selected ${this.swiperContainer.easingFunction}--selected`;
+    this.swiperContainer.items[idx].classList.add("ms-swiper--activated");
+
+    if (this.swiperContainer.easingFunction !== "fade") {
+      const ul = document.querySelector(
+        "." + this.swiperContainer.easingFunction
+      );
+      (ul as HTMLElement).style.transform = `translateX(-${
+        idx * Number(this.swiperContainer.width)
+      }px)`;
+    }
 
     const detail = {
       index: idx,

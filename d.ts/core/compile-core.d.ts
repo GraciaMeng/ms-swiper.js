@@ -1,8 +1,8 @@
 export declare class MsSwiper extends HTMLElement {
     static get observedAttributes(): string[];
     get class(): string;
-    get width(): string;
-    get height(): string;
+    get width(): string | 340;
+    get height(): string | 790;
     get images(): string[];
     get easingFunction(): string;
     get interval(): number;

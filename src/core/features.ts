@@ -22,6 +22,8 @@ class Swiper
   implements SwiperObjectInterface
 {
   container: HTMLElement;
+  width: string;
+  height: string;
   images: ConfigInterface["images"];
   interval: ConfigInterface["interval"];
   easingFunction: EasingFunctionEnum;
@@ -44,6 +46,8 @@ class Swiper
     super(plugins);
     this.container = container;
     this.container.innerText = "";
+    this.width = container.width;
+    this.height = container.height;
     this.images = container.images;
     this.interval = container.interval;
     this.easingFunction = container.easingFunction;
@@ -67,6 +71,7 @@ class Swiper
       )
     );
     this.length = this.items.length;
+
     this.registerSwiperElement();
     if (this.length > 0) {
       this.SlideCore.slideTo(0);
@@ -96,14 +101,23 @@ class Swiper
     const images = this.images;
     const renderContent = images.map((img) => {
       const imgNode = createVDom("img", { class: "ms-swiper__img", src: img });
-      const liNode = createVDom(
-        "li",
-        { class: `ms-swiper-list__item ${this.easingFunction}` },
-        [imgNode]
-      );
+      const liNode = createVDom("li", { class: "ms-swiper-list__item" }, [
+        imgNode,
+      ]);
       return liNode;
     });
-    const ulNode = createVDom("ul", { class: "ms-swiper-list" }, renderContent);
+    const ulNode = createVDom(
+      "ul",
+      {
+        class: `ms-swiper-list ${this.easingFunction}`,
+        style: `width:${
+          this.easingFunction == "fade"
+            ? "100%"
+            : this.images.length * Number(this.width) + "px"
+        };`,
+      },
+      renderContent
+    );
     return ulNode;
   }
 

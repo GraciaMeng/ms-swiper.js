@@ -5,7 +5,7 @@ export const defaultConfig: ConfigInterface = {
   width: "100vw",
   height: "100vh",
   images: [],
-  "easing-function": EasingFunctionEnum.opacity,
+  "easing-function": EasingFunctionEnum.fade,
   interval: 3000,
   autoplay: true,
   "show-dots": true,

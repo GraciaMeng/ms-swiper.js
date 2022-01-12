@@ -5,7 +5,7 @@ export declare enum TriggerEnum {
     Hover = "hover"
 }
 export declare enum EasingFunctionEnum {
-    opacity = "opacity",
+    fade = "fade",
     linear = "linear",
     easeInCubic = "easeInCubic",
     easeOutCubic = "easeOutCubic",

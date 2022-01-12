@@ -5,6 +5,8 @@ import type { SwiperObjectInterface, SwiperArgsType } from "../types/swiperTypes
 import type { SlideCoreType, AutoCoreType, EventCoreType } from "../types/composeTypes";
 declare class Swiper extends WebComponent<SwiperArgsType> implements SwiperObjectInterface {
     container: HTMLElement;
+    width: string;
+    height: string;
     images: ConfigInterface["images"];
     interval: ConfigInterface["interval"];
     easingFunction: EasingFunctionEnum;

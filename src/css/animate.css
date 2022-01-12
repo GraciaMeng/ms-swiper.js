@@ -1,6 +1,34 @@
-.fade {
+.fade > .ms-swiper-list__item {
+  position: absolute;
+  top: 0;
   opacity: 0;
 }
-.fade--selected {
+.fade > li {
+  opacity: 0;
+}
+.fade > li.ms-swiper--activated {
   opacity: 1;
+}
+
+.linear,
+.easeInCubic,
+.easeOutCubic,
+.easeInOutCubic {
+  display: flex;
+  transition: all 0.8s;
+}
+.linear {
+  transition-timing-function: linear;
+}
+
+.easeInCubic {
+  transition-timing-function: ease-in;
+}
+
+.easeOutCubic {
+  transition-timing-function: ease-out;
+}
+
+.easeInOutCubic {
+  transition-timing-function: ease-in-out;
 }

@@ -15,7 +15,7 @@ export class Select implements SelectType {
   // 获取当前的item
   getSelectedItem(): HTMLElement {
     return this.component.container.querySelector(
-      `.${this.componentName}-list__item--selected`
+      `.${this.componentName}--activated`
     );
   }
 

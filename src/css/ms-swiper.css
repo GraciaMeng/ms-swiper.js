@@ -4,34 +4,26 @@ ms-swiper {
   position: relative;
   display: block;
   font-size: 16px;
+  overflow: hidden;
 }
 
 .ms-swiper-list {
   position: relative;
   list-style-type: none;
   height: 100%;
-  width: 100%;
   margin: 0;
   padding: 0;
 }
 
-.ms-swiper-list__item,
-.ms-swiper-list__item--selected {
+.ms-swiper-list__item {
   width: 100%;
   height: 100%;
-  position: absolute;
-  top: 0;
-  opacity: 0;
   transition: all 1s;
 }
 .ms-swiper__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-.ms-swiper-list__item--selected {
-  opacity: 1;
-  transition: all 1s;
 }
 
 .ms-swiper-list__next,
@@ -94,6 +86,6 @@ ms-swiper {
 .ms-swiper__plugin--show {
   opacity: 1;
 }
-#ms-swiper:hover .ms-swiper__plugin {
+ms-swiper:hover .ms-swiper__plugin {
   opacity: 1;
 }

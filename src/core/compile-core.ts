@@ -24,10 +24,10 @@ export class MsSwiper extends HTMLElement {
     return this.getAttribute("class");
   }
   get width() {
-    return (this.getAttribute("width") || 340) + "px";
+    return this.getAttribute("width") || 340;
   }
   get height() {
-    return (this.getAttribute("height") || 790) + "px";
+    return this.getAttribute("height") || 790;
   }
   get images() {
     const imagesValue = this.getAttribute("images");
@@ -40,7 +40,7 @@ export class MsSwiper extends HTMLElement {
     }
   }
   get easingFunction() {
-    return this.getAttribute("easingFunction") || "fade";
+    return this.getAttribute("easing-function") || "fade";
   }
   get interval() {
     return parseInt(this.getAttribute("interval")) || 3000;
@@ -93,8 +93,8 @@ export class MsSwiper extends HTMLElement {
       }
     }
 
-    this.style.width = this.width;
-    this.style.height = this.height;
+    this.style.width = this.width + "px";
+    this.style.height = this.height + "px";
     new Swiper(this, plugins);
   }
 }

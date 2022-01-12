@@ -33,6 +33,8 @@ export interface SwiperArgsType {
 
 export interface SwiperObjectInterface extends ConfigInterface {
   container: HTMLElement;
+  width: string;
+  height: string;
   images: ConfigInterface["images"];
   interval: ConfigInterface["interval"];
   easingFunction: ConfigInterface["easing-function"];
