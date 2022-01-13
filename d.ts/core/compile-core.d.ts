@@ -13,7 +13,7 @@ export declare class MsSwiper extends HTMLElement {
     get indicatorColor(): string;
     get indicatorActiveColor(): string;
     get trigger(): string;
-    get vertical(): string;
+    get vertical(): boolean;
     constructor();
     justifyExistence(value: any): boolean;
     connectedCallback(): void;

@@ -11,8 +11,15 @@ export const createVDom = (
   children?: HTMLElement[] | string | undefined
 ): HTMLElement => {
   const element = document.createElement(tag);
-  for (const propKey in props) {
-    element.setAttribute(propKey, props[propKey]);
+  for (const [propKey, propValue] of Object.entries(props)) {
+    if (typeValidate(propValue) === "object" && propKey === "style") {
+      // 设置style属性
+      for (const [attrKey, attrVal] of Object.entries(propValue)) {
+        element.style[attrKey] = attrVal;
+      }
+    } else {
+      element.setAttribute(propKey, props[propKey]);
+    }
   }
   if (typeof children === "string") {
     element.textContent = children;

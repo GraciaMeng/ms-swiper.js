@@ -106,15 +106,24 @@ class Swiper
       ]);
       return liNode;
     });
+    const style = {
+      height: "100%",
+      width: "100%",
+      flexDirection: "row",
+    };
+    if (this.easingFunction !== "fade") {
+      if (!this.vertical) {
+        style.width = this.images.length * Number(this.width) + "px";
+      } else {
+        style.height = this.images.length * Number(this.height) + "px";
+        style.flexDirection = "column";
+      }
+    }
     const ulNode = createVDom(
       "ul",
       {
         class: `ms-swiper-list ${this.easingFunction}`,
-        style: `width:${
-          this.easingFunction == "fade"
-            ? "100%"
-            : this.images.length * Number(this.width) + "px"
-        };`,
+        style,
       },
       renderContent
     );

@@ -22,9 +22,18 @@ export class SlideCore implements SlideCoreType {
       const ul = document.querySelector(
         "." + this.swiperContainer.easingFunction
       );
-      (ul as HTMLElement).style.transform = `translateX(-${
-        idx * Number(this.swiperContainer.width)
-      }px)`;
+      let transformValue;
+      if (this.swiperContainer.vertical) {
+        transformValue = `translate(0px, -${
+          idx * Number(this.swiperContainer.height)
+        }px)`;
+        console.log(transformValue);
+      } else {
+        transformValue = `translate(-${
+          idx * Number(this.swiperContainer.width)
+        }px, 0px)`;
+      }
+      (ul as HTMLElement).style.transform = transformValue;
     }
 
     const detail = {

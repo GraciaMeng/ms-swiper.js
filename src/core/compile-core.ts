@@ -67,7 +67,7 @@ export class MsSwiper extends HTMLElement {
     return this.getAttribute("trigger") || "click";
   }
   get vertical() {
-    return this.getAttribute("vertical");
+    return !this.justifyExistence(this.getAttribute("vertical"));
   }
   constructor() {
     super();
