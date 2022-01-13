@@ -27,7 +27,6 @@ export class SlideCore implements SlideCoreType {
         transformValue = `translate(0px, -${
           idx * Number(this.swiperContainer.height)
         }px)`;
-        console.log(transformValue);
       } else {
         transformValue = `translate(-${
           idx * Number(this.swiperContainer.width)
@@ -72,10 +71,12 @@ export class AutoCore implements AutoCoreType {
   // 开始自动滚动
   start() {
     this.stop();
-    this._timer = window.setInterval(
-      () => this.swiperContainer.SlideCore.slideNext(),
-      this.swiperContainer.interval
-    );
+    if (this.swiperContainer.autoplay) {
+      this._timer = window.setInterval(
+        () => this.swiperContainer.SlideCore.slideNext(),
+        this.swiperContainer.interval
+      );
+    }
   }
 
   // 停止自动滚动
